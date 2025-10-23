@@ -42,3 +42,5 @@ data/01_interim/
 .pytest_cache/
 .coverage
 htmlcov/
+
+CLAUDE.md

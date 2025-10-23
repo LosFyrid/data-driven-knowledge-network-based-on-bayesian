@@ -1,0 +1,28 @@
+# Core dependencies for Aetherium project
+
+# Bayesian inference (Inner Loop)
+pymc>=5.10.0
+arviz>=0.17.0
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Data handling
+pandas>=2.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Bayesian Networks (Outer Loop)
+pgmpy>=0.1.23
+
+# LLM integration (future)
+# langchain>=0.1.0
+# openai>=1.0.0
+
+# Symbolic regression (future)
+# pysr>=0.16.0
