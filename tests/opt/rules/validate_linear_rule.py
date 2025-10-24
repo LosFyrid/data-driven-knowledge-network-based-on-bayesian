@@ -24,6 +24,9 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent / 'src'))
 
 from rules.linear_rule import LinearRule
 
+# Optional: Import diagnostic utilities (comment out if not needed)
+from utils.diagnostics import check_sample_size, check_data_quality, check_convergence
+
 
 def generate_synthetic_data(n_samples=50, a_true=2.5, b_true=1.0, noise_std=0.5, seed=42):
     """
@@ -65,6 +68,13 @@ def test_basic_functionality():
     print(f"\nCreated rule: {rule}")
     print(f"Metadata: {rule.metadata}")
 
+    # Optional: Pre-fit diagnostic checks (comment out if not needed)
+    print("\n--- Optional: Pre-fit Diagnostics ---")
+    valid, msg = check_sample_size(X_train, y_train, n_params=3)
+    print(f"Sample size: {msg}")
+    valid, msg = check_data_quality(X_train, y_train)
+    print(f"Data quality: {msg}")
+
     # Fit the rule
     print("\n--- Fitting the rule (running MCMC sampling) ---")
     print("This may take 30-60 seconds...")
@@ -80,6 +90,11 @@ def test_basic_functionality():
     print(f"R-hat mean: {result.diagnostics['rhat_mean']:.4f}")
     print(f"ESS min: {result.diagnostics['ess_min']:.0f}")
     print(f"Converged: {result.diagnostics['converged']}")
+
+    # Optional: Post-fit convergence check (comment out if not needed)
+    print("\n--- Optional: Post-fit Diagnostics ---")
+    converged, msg = check_convergence(result.trace, result.diagnostics)
+    print(msg)
 
     # Get parameter estimates
     print("\n--- Parameter Estimates ---")
